@@ -8,7 +8,7 @@ st.title("🏔️ Find Your Perfect Ski Resort")
 st.markdown("### Use filters to find the best ski resort based on your preferences!")
 
 # Load dataset from local file upload
-    df = pd.read_csv(uploaded_file)
+df = pd.read_csv(uploaded_file)
     st.write("Dataset loaded successfully! Showing first 5 records:")
     st.dataframe(df.head())
 
