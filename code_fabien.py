@@ -1,4 +1,4 @@
-import streamlit as st
+rimport streamlit as st
 import pandas as pd
 import plotly.express as px
 
@@ -8,7 +8,7 @@ st.title("🏔️ Find Your Perfect Ski Resort")
 st.markdown("### Use filters to find the best ski resort based on your preferences!")
 
 # Load dataset from local file
-DATA_FILE = "ski_resorts.csv"  # Make sure this file is in the same directory
+DATA_FILE = "European_Ski_Resorsts.csv"  # Make sure this file is in the same directory
 
 @st.cache_data
 def load_data():
