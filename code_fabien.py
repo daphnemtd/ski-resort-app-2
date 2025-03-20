@@ -9,25 +9,25 @@ st.markdown("### Use filters to find the best ski resort based on your preferenc
 
 # Load dataset from local file upload
 df = pd.read_csv(uploaded_file)
-    st.write("Dataset loaded successfully! Showing first 5 records:")
-    st.dataframe(df.head())
+st.write("Dataset loaded successfully! Showing first 5 records:")
+st.dataframe(df.head())
 
     # Sidebar Filters
-    st.sidebar.header("🔍 Filter Your Preferences")
-    selected_country = st.sidebar.selectbox("Select Country", ['All'] + sorted(df['Country'].dropna().unique()))
-    selected_level = st.sidebar.selectbox("Ski Level", ['All', 'Beginner', 'Intermediate', 'Advanced'])
-    max_budget = st.sidebar.slider("Max Budget (Day Pass in €)", int(df['DayPassPriceAdult'].min()), int(df['DayPassPriceAdult'].max()), int(df['DayPassPriceAdult'].max()))
-    altitude_range = st.sidebar.slider("Altitude Range (meters)", int(df['LowestPoint'].min()), int(df['HighestPoint'].max()), (int(df['LowestPoint'].min()), int(df['HighestPoint'].max())))
-    domain_size = st.sidebar.slider("Min Total Slope (km)", int(df['TotalSlope'].min()), int(df['TotalSlope'].max()), int(df['TotalSlope'].min()))
+st.sidebar.header("🔍 Filter Your Preferences")
+selected_country = st.sidebar.selectbox("Select Country", ['All'] + sorted(df['Country'].dropna().unique()))
+selected_level = st.sidebar.selectbox("Ski Level", ['All', 'Beginner', 'Intermediate', 'Advanced'])
+max_budget = st.sidebar.slider("Max Budget (Day Pass in €)", int(df['DayPassPriceAdult'].min()), int(df['DayPassPriceAdult'].max()), int(df['DayPassPriceAdult'].max()))
+altitude_range = st.sidebar.slider("Altitude Range (meters)", int(df['LowestPoint'].min()), int(df['HighestPoint'].max()), (int(df['LowestPoint'].min()), int(df['HighestPoint'].max())))
+domain_size = st.sidebar.slider("Min Total Slope (km)", int(df['TotalSlope'].min()), int(df['TotalSlope'].max()), int(df['TotalSlope'].min()))
 
     # Filtering Data
-    filtered_df = df.copy()
-    if selected_country != 'All':
-        filtered_df = filtered_df[filtered_df['Country'] == selected_country]
-    if selected_level != 'All':
-        if selected_level == 'Beginner':
-            filtered_df = filtered_df[filtered_df['BeginnerSlope'] > 10]
-        elif selected_level == 'Intermediate':
+filtered_df = df.copy()
+if selected_country != 'All':
+    filtered_df = filtered_df[filtered_df['Country'] == selected_country]
+if selected_level != 'All':
+    if selected_level == 'Beginner':
+        filtered_df = filtered_df[filtered_df['BeginnerSlope'] > 10]
+    elif selected_level == 'Intermediate':
             filtered_df = filtered_df[filtered_df['IntermediateSlope'] > 20]
         else:
             filtered_df = filtered_df[filtered_df['DifficultSlope'] > 10]
